@@ -13,13 +13,22 @@
     <title>Cadastro de Usuário</title>
   </head>
 <body>
+	<%
+	 String nome = request.getParameter("nome");
+		if (nome == null)
+			nome= "";
+		
+	 String email =  request.getParameter("email");
+	 	if (email == null)
+	 		email = ""; 
+	%>
 	<div class="container-fluid">
 		<h1>Cadastro de Usuário</h1>
 		<form method="post" action="cadastrarUsuario">
 			<label for="nome">Nome:</label>
-			<input type="text" name="nome">
+			<input type="text" name="nome" value ="<%=nome %>">
 			<label for="email">E-mail:</label>
-			<input type="text" name="email"><br><br>
+			<input type="text" name="email" value = "<%=email %>"><br><br>
 			<label for="senha1">Senha:</label>
 			<input type="password" name="senha1" >
 			<label for="senha2">Senha confirmada:</label>
