@@ -38,5 +38,14 @@
 			<a class="btn btn-primary" href="index.html" role="button">Voltar</a>
 		</form>	  
 	</div>
+	
+	</form>
+			<c:if test="${not empty param.nome || not empty param.email}">
+				<div class="alert alert-danger" role="alert">
+						<span>${param.nome.concat(", as senhas informadas não são iguais.")}</span>
+				</div>
+			</c:if>
+		</div>
+	</main>
 </body>
 </html>

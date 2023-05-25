@@ -49,6 +49,7 @@ public class CadastroUsuarioServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setAttribute("listagemUsuario", lstDeUsuario);		
 		for (Usuario usuario : lstDeUsuario) {
 			System.out.println(usuario.getNome().concat(" - ").concat(usuario.getEmail()));
 		}
@@ -58,6 +59,8 @@ public class CadastroUsuarioServlet extends HttpServlet {
 	public void destroy() {
 		this.lstDeUsuario.clear();
 	}
+	
+
 }
 
 
