@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.edu.ifgoiano.entidade.Usuario;
+import br.edu.ifgoiano.repositorio.UsuarioRepositorio;
 
 @WebServlet("/cadastrarUsuario")
 public class CadastroUsuarioServlet extends HttpServlet {
@@ -36,6 +37,8 @@ public class CadastroUsuarioServlet extends HttpServlet {
 			usu.setNome(req.getParameter("nome"));
 			usu.setEmail(req.getParameter("email"));
 			usu.setSenha(senha1);
+			
+			UsuarioRepositorio repositorio = new UsuarioRepositorio();
 			
 			lstDeUsuario.add(usu);
 			
