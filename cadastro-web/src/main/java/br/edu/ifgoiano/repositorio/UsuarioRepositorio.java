@@ -14,10 +14,18 @@ public class UsuarioRepositorio {
 
 	public static Connection conn;
 	
-	private Connection getConnection() throws SQLException{
+	public UsuarioRepositorio(){
+		try {
 	
-			return  DriverManager.
+			conn= DriverManager.
 			        getConnection("jdbc:h2:~/usuariodb", "sa", "sa");
+			
+			System.out.println("Conexão realizada com sucesso!");
+			
+		} catch (SQLException e) {
+			System.out.println("Erro na conexão com o banco de dados.");
+			e.printStackTrace();
+		}
 	}
 	
 	public List<Usuario> listarUsuario(){
@@ -44,6 +52,11 @@ public class UsuarioRepositorio {
 		}
 		return lstUsuario;
 		
+	}
+
+	private Connection getConnection() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public void inserirUsuario(Object usuario) {

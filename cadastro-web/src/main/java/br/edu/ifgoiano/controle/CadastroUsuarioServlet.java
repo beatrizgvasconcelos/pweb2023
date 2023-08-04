@@ -26,40 +26,47 @@ public class CadastroUsuarioServlet extends HttpServlet {
 	
 	@Override
 	public void init() throws ServletException {
-		this.lstDeUsuario = new ArrayList<Usuario>();
+	
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String senha1 = req.getParameter("senha1");
-		String senha2 = req.getParameter("senha2");
+		    String senha1 = req.getParameter("senha1");
 		
-		//Verificar se as senhas são iguais
-		if(senha1.equals(senha2)) {
-			Usuario usu = new Usuario();
-			usu.setNome(req.getParameter("nome"));
+		    Usuario usu = new Usuario();
 			usu.setEmail(req.getParameter("email"));
 			usu.setSenha(senha1);
 			
 			UsuarioRepositorio repositorio = new UsuarioRepositorio();
-			repositorio.inserirUsuario(usuario);
-		
+	
+			lstDeUsuario.add(usu);
 			
-			//redirecionar o usuário para a página de login
-			resp.sendRedirect("index.html");
-		}else {
-			//redirecionar o usuário para a mesma página de cadastro do usuário.
 			req.getRequestDispatcher("usuarioCadastro.jsp").forward(req, resp);
-		}
-	}	
+	}
+
+
+
 	
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setAttribute("usuarios", lstDeUsuario);
+		
 		UsuarioRepositorio repositorio = new UsuarioRepositorio();
 		
 		req.setAttribute("usuarios", repositorio.listarUsuario());
 		
 		req.getRequestDispatcher("usuarioListagem.jsp").forward(req, resp);
 	}
+	@Override
+	public void destroy() {
+		try {
+			UsuarioRepositorio.conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.lstDeUsuario.clear();
+	}
+
+	}
 	
-}
