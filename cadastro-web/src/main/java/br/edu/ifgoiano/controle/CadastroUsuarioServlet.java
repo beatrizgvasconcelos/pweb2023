@@ -18,55 +18,33 @@ import br.edu.ifgoiano.repositorio.UsuarioRepositorio;
 public class CadastroUsuarioServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 7869758393435911873L;
-	
-	//Simular o banco de dados
-	private List<Usuario> lstDeUsuario;
 
-	private Object usuario;
-	
-	@Override
-	public void init() throws ServletException {
-	
-	}
-	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		    String senha1 = req.getParameter("senha1");
-		
-		    Usuario usu = new Usuario();
+		String senha1 = req.getParameter("senha1");
+		String senha2 = req.getParameter("senha2");
+
+		if(senha1.equals(senha2)){
+			Usuario usu = new Usuario();
 			usu.setEmail(req.getParameter("email"));
 			usu.setSenha(senha1);
 			
 			UsuarioRepositorio repositorio = new UsuarioRepositorio();
-	
-			lstDeUsuario.add(usu);
+			repositorio.inserirUsuario(usu);
 			
+			resp.sendRedirect("index.html");
+		}else {
 			req.getRequestDispatcher("usuarioCadastro.jsp").forward(req, resp);
+		}
 	}
 
-
-
-	
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setAttribute("usuarios", lstDeUsuario);
-		
 		UsuarioRepositorio repositorio = new UsuarioRepositorio();
-		
+
 		req.setAttribute("usuarios", repositorio.listarUsuario());
-		
+
 		req.getRequestDispatcher("usuarioListagem.jsp").forward(req, resp);
 	}
-	@Override
-	public void destroy() {
-		try {
-			UsuarioRepositorio.conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		this.lstDeUsuario.clear();
-	}
 
-	}
-	
+}
