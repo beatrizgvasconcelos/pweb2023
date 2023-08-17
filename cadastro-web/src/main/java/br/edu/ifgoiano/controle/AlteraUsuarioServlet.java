@@ -23,4 +23,3 @@ public class AlteraUsuarioServlet extends HttpServlet {
 		
 	}
 }
-s

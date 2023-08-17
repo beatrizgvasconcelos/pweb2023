@@ -22,6 +22,7 @@
 					<th>ID</th>
 					<th>Nome</th>
 					<th>Email</th>
+					<th>#</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -30,11 +31,14 @@
 						<td>${usu.id}</td>
 						<td>${usu.nome}</td>
 						<td><a href="mailto:${usu.email}">${usu.email}</a></td>
-						<td><a class = "btn btn-sucess" href = "atualizarUsuario.jsp">Editar</a></td>
+						<td>
+							<a class="btn btn-success" href="usuarioAlterar.jsp">Editar</a>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		<a href="usuarioCadastro.jsp" class="btn btn-primary">Voltar</a>
 	</div>
 </body>
 </html>

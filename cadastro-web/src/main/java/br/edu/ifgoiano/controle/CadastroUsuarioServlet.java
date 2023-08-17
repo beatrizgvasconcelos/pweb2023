@@ -26,6 +26,7 @@ public class CadastroUsuarioServlet extends HttpServlet {
 
 		if(senha1.equals(senha2)){
 			Usuario usu = new Usuario();
+			usu.setNome(req.getParameter("nome"));
 			usu.setEmail(req.getParameter("email"));
 			usu.setSenha(senha1);
 			
