@@ -26,13 +26,14 @@
 				</tr>
 			</thead>
 			<tbody>
+			<%//Juca %>
 				<c:forEach items="${usuarios}" var="usu" varStatus="id">
 					<tr class="${id.count % 2 == 0 ? 'table-primary' : 'table-secondary'}">
 						<td>${usu.id}</td>
 						<td>${usu.nome}</td>
 						<td><a href="mailto:${usu.email}">${usu.email}</a></td>
 						<td>
-							<a class="btn btn-success" href="usuarioAlterar.jsp">Editar</a>
+							<a class="btn btn-success" href="alteraUsuario?usuarioId=${usu.id}">Editar</a>
 						</td>
 					</tr>
 				</c:forEach>
